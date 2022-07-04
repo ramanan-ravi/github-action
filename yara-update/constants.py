@@ -11,4 +11,4 @@ YARA_RULES_GITHUB_REPOS = {
         "pattern": ["**/*.yar"], "path": "rules"}
 }
 
-RULE_FILE_EXCLUSION = ["_win_"]
+RULE_FILE_EXCLUSION = ["_win_", "deprecated", "android"]

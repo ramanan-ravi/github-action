@@ -3,6 +3,7 @@ from utils import *
 import git
 import glob
 import yara
+import shutil
 
 clone_folder = "/tmp/yara-rules"
 output_rule_file = "/tmp/filerules.yar"
@@ -31,4 +32,4 @@ if __name__ == '__main__':
             parse_yara_rules(repo, file_patterns)
         except Exception as e:
             print(e)
-    os.remove(clone_folder)
+    shutil.rmtree(clone_folder)
