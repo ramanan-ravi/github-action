@@ -30,7 +30,7 @@ jobs:
       run: pip install -r yara-update/requirements.txt
     
     - name: PyPy and Python version
-      run: ${{ steps.setup-python.outputs.python-path }} --version
+      run: python3 --version; pip3 --version
     
     - name: Run simple code
-      run: ${{ steps.setup-python.outputs.python-path }} yara-update/yara-update.py
+      run: python3 yara-update/yara-update.py
