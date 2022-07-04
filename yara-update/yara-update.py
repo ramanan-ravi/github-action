@@ -20,16 +20,15 @@ def parse_yara_rules(repo, file_patterns):
                 continue
             rule_files.append(file_name)
     for file_name in rule_files:
-        print(file_name)
+        print(os.path.join(repo_path, file_name))
         print(yara.compile(filepath=os.path.join(repo_path, file_name)))
 
 
 if __name__ == '__main__':
     mkdir_all(clone_folder)
     for repo, file_patterns in YARA_RULES_GITHUB_REPOS.items():
-        parse_yara_rules(repo, file_patterns)
         try:
-            pass
+            parse_yara_rules(repo, file_patterns)
         except Exception as e:
             print(e)
     os.remove(clone_folder)
