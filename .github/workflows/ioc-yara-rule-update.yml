@@ -5,14 +5,13 @@ on:
     - main
 
 jobs:
-  setup-pypy-noenv:
-    name: Setup PyPy ${{ matrix.pypy }} ${{ matrix.os }} (noenv)
+  setup:
+    name: Setup
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-22.04]
-        pypy: ['pypy3.9']
     
     steps:
     - name: Install dependencies
@@ -21,7 +20,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     
-    - name: setup-python
+    - name: Setup python
       id: setup-python
       uses: actions/setup-python@v2
       with:
@@ -31,11 +30,8 @@ jobs:
 
     - name: Install dependencies
       run: pip install -r yara-update/requirements.txt
-    
-    - name: PyPy and Python version
-      run: python3 --version; pip3 --version
-    
-    - name: Run simple code
+
+    - name: Run yara rule updater
       run: |
         export PYTHONPATH=$PYTHONPATH:$HOME
         python3 yara-update/yara-update.py

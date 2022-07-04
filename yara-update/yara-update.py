@@ -6,7 +6,7 @@ import yara
 import shutil
 
 clone_folder = "/tmp/yara-rules"
-output_rule_file = "/tmp/filerules.yar"
+output_rule_file = "/tmp/filescan.yar"
 
 
 def parse_yara_rules(repo, file_patterns):
@@ -20,9 +20,17 @@ def parse_yara_rules(repo, file_patterns):
             if any(exclusion in str(file_name).lower() for exclusion in RULE_FILE_EXCLUSION):
                 continue
             rule_files.append(file_name)
-    for file_name in rule_files:
-        print(os.path.join(repo_path, file_name))
-        print(yara.compile(filepath=os.path.join(repo_path, file_name)))
+    with open(output_rule_file, "a") as output_file:
+        for file_name in rule_files:
+            try:
+                rule_file_name = os.path.join(repo_path, file_name)
+                yara.compile(filepath=rule_file_name)
+                # It is a valid yara rule file
+                with open(rule_file_name, 'r') as file:
+                    data = file.read()
+                    output_file.write(data)
+            except:
+                pass
 
 
 if __name__ == '__main__':
