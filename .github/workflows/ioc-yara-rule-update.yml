@@ -33,4 +33,6 @@ jobs:
       run: python3 --version; pip3 --version
     
     - name: Run simple code
-      run: python3 yara-update/yara-update.py
+      run: |
+        export PYTHONPATH=$PYTHONPATH:$HOME
+        python3 yara-update/yara-update.py
