@@ -11,4 +11,8 @@ YARA_RULES_GITHUB_REPOS = {
         "pattern": ["**/*.yar"], "path": "rules"}
 }
 
-RULE_FILE_EXCLUSION = ["_win_", "windows", "deprecated", "android"]
+RULE_FILE_NAME_EXCLUSION = [
+    "_win_", "windows", "win7", "win8", "win2k", "win2000", "winxp", "winnt", "deprecated", "android"]
+RULE_CONTENT_EXCLUSION = [
+    "c:\\\\", "d:\\\\", "e:\\\\", "f:\\\\", "microsoft", "win7", "win8", "win2k", "win2000", "winxp", "winnt", ".exe",
+    "windows", "deprecated", "android", "msie"]

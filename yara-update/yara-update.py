@@ -17,7 +17,7 @@ def parse_yara_rules(repo, file_patterns):
     for file_pattern in file_patterns["pattern"]:
         file_names = glob.glob(file_pattern, root_dir=repo_path, recursive=True)
         for file_name in file_names:
-            if any(exclusion in str(file_name).lower() for exclusion in RULE_FILE_EXCLUSION):
+            if any(exclusion in str(file_name).lower() for exclusion in RULE_FILE_NAME_EXCLUSION):
                 continue
             rule_files.append(file_name)
     with open(output_rule_file, "a") as output_file:
@@ -28,6 +28,9 @@ def parse_yara_rules(repo, file_patterns):
                 # It is a valid yara rule file
                 with open(rule_file_name, 'r') as file:
                     data = file.read()
+                    data_lower_case = str(data).lower()
+                    if any(exclusion in data_lower_case for exclusion in RULE_CONTENT_EXCLUSION):
+                        continue
                     output_file.write(data)
             except:
                 pass
