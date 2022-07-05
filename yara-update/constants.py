@@ -12,7 +12,8 @@ YARA_RULES_GITHUB_REPOS = {
 }
 
 RULE_FILE_NAME_EXCLUSION = [
-    "_win_", "windows", "win7", "win8", "win2k", "win2000", "winxp", "winnt", "deprecated", "android"]
+    "win_", "_win", "windows", "win7", "win8", "win2k", "win2000", "winxp", "winnt", "deprecated", "android", "_osx",
+    "osx_"]
 RULE_CONTENT_EXCLUSION = [
     "c:\\\\", "d:\\\\", "e:\\\\", "f:\\\\", "microsoft", "win7", "win8", "win2k", "win2000", "winxp", "winnt", ".exe",
-    "windows", "deprecated", "android", "msie"]
+    "windows", "deprecated", "android", "msie", "macos"]

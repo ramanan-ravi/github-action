@@ -6,7 +6,7 @@ import yara
 import shutil
 
 clone_folder = "/tmp/yara-rules"
-output_rule_file = "/tmp/filescan.yar"
+output_rule_file = "/tmp/malware.yar"
 
 
 def parse_yara_rules(repo, file_patterns):
